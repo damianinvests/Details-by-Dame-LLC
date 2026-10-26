@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://detailsbydame.com/sitemap.xml
