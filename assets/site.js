@@ -61,7 +61,10 @@
       stage.classList.add("stage-ready");
       update();
     });
-    video.addEventListener("seeked",function(){state.seeking=false;});
+    video.addEventListener("seeked",function(){
+      state.seeking=false;
+      if(!reduced&&!document.hidden&&visible()&&!state.raf)state.raf=requestAnimationFrame(render);
+    });
     video.addEventListener("play",function(){video.pause();});
     video.pause();
     update();
