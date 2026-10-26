@@ -14,7 +14,7 @@
   stages.forEach(function(stage){
     var video=stage.querySelector("video[data-scroll-video]");
     if(!video)return;
-    var state={target:0,current:0,raf:0,seeking:false,ready:false};
+    var state={target:0,current:0,raf:0,seeking:false};
     var start=parseFloat(video.getAttribute("data-start")||"0");
     var requestedEnd=parseFloat(video.getAttribute("data-end")||"0");
     function clamp(n){return Math.max(0,Math.min(1,n));}
@@ -49,10 +49,16 @@
       state.target=getProgress();
       if(!state.raf)state.raf=requestAnimationFrame(render);
     }
-    video.addEventListener("loadedmetadata",update);
+    video.addEventListener("loadedmetadata",function(){
+      video.pause();
+      if(window.scrollY<=0&&Math.abs(video.currentTime-start)>0.045){
+        state.seeking=true;
+        try{video.currentTime=start;}catch(e){state.seeking=false;}
+      }
+      update();
+    });
     video.addEventListener("loadeddata",function(){
-      state.ready=true;
-      if(!reduced)stage.classList.add("stage-ready");
+      stage.classList.add("stage-ready");
       update();
     });
     video.addEventListener("seeked",function(){state.seeking=false;});

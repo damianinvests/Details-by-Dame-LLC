@@ -10,7 +10,7 @@ button{font:inherit}
 ::selection{background:rgba(210,174,112,.35);color:#fff}
 .site-header{position:fixed;z-index:50;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px clamp(18px,4vw,56px);border-bottom:1px solid rgba(255,255,255,.15);background:rgba(5,11,8,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .brand{display:flex;align-items:center;gap:11px;min-width:190px}
-.brand-mark{width:42px;height:42px;overflow:hidden;border:1px solid rgba(210,174,112,.7);border-radius:50%;background:#315d37;flex:0 0 auto}
+.brand-mark{width:42px;height:42px;overflow:hidden;border:1px solid rgba(210,174,112,.7);border-radius:50%;background:#2c2d30;flex:0 0 auto}
 .brand-mark img{width:100%;height:100%;object-fit:cover}
 .brand-copy{font-size:12px;line-height:1.2;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .brand-copy small{display:block;margin-top:4px;color:var(--gold);font-size:9px;font-weight:500;letter-spacing:.18em}
@@ -48,9 +48,9 @@ p{color:var(--muted)}
 .scroll-stage{position:relative;height:220svh;background:var(--ink)}
 .scroll-stage.compact{height:190svh}
 .stage-pin{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden;background:#09110d}
-.stage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.86}
-.stage-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;filter:saturate(.78);transition:opacity .5s ease}
-.stage-ready .stage-poster{opacity:0}
+.stage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+
+.stage-ready 
 .stage-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,8,5,.8) 0%,rgba(3,8,5,.54) 42%,rgba(3,8,5,.16) 100%),linear-gradient(0deg,rgba(3,8,5,.72),transparent 42%,rgba(3,8,5,.3))}
 .stage-shade:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 73% 48%,transparent 22%,rgba(0,0,0,.24) 100%)}
 .hero-content{position:absolute;z-index:2;inset:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,350px);align-items:center;gap:7vw;padding:110px clamp(24px,8vw,128px) 96px}
@@ -254,4 +254,4 @@ a:hover .arrow{transform:translateX(4px)}
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
  .reveal{opacity:1;transform:none}
-}
+}.stage-ready .stage-video{opacity:.86}
