@@ -23,6 +23,10 @@
       return !route||!route.hidden;
     }
     function getProgress(){
+      if(stage.getAttribute("data-scroll-scope")==="page"){
+        var pageRange=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+        return clamp(window.scrollY/pageRange);
+      }
       var rect=stage.getBoundingClientRect();
       var range=Math.max(1,stage.offsetHeight-window.innerHeight);
       return clamp(-rect.top/range);
