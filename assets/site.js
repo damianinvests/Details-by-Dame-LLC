@@ -15,6 +15,20 @@
     var video=stage.querySelector("video[data-scroll-video]");
     if(!video)return;
     var state={target:0,current:0,raf:0,seeking:false};
+    var mobileQuery=window.matchMedia?window.matchMedia("(max-width:700px)"):null;
+    var desktopSource=video.getAttribute("src")||"";
+    var mobileSource=video.getAttribute("data-mobile-src");
+    var desktopPreload=video.getAttribute("preload")||"metadata";
+    function syncSource(){
+      var useMobile=!!(mobileQuery&&mobileQuery.matches&&mobileSource);
+      var nextSource=useMobile?mobileSource:desktopSource;
+      video.preload=useMobile?"auto":desktopPreload;
+      if(nextSource&&video.getAttribute("src")!==nextSource){
+        state.seeking=false;
+        video.setAttribute("src",nextSource);
+        video.load();
+      }
+    }
     var start=parseFloat(video.getAttribute("data-start")||"0");
     var requestedEnd=parseFloat(video.getAttribute("data-end")||"0");
     function clamp(n){return Math.max(0,Math.min(1,n));}
@@ -70,6 +84,12 @@
       if(!reduced&&!document.hidden&&visible()&&!state.raf)state.raf=requestAnimationFrame(render);
     });
     video.addEventListener("play",function(){video.pause();});
+    if(mobileQuery){
+      var mediaChange=function(){syncSource();update();};
+      if(mobileQuery.addEventListener)mobileQuery.addEventListener("change",mediaChange);
+      else if(mobileQuery.addListener)mobileQuery.addListener(mediaChange);
+    }
+    syncSource();
     video.pause();
     update();
     stage._scrubUpdate=update;
