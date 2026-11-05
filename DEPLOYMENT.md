@@ -35,6 +35,6 @@ The Wrangler config and deployment command have not been run from this chat beca
 
 The quote form is connected to FormSubmit's AJAX endpoint and sends submissions to detailsbydame@gmail.com. FormSubmit requires the recipient to confirm the first activation email before forwarding submissions. After deploying the preview, submit one test request, open the activation email (check Spam/Promotions), confirm the form, and submit a second test to verify delivery. The provider documents cross-origin AJAX support, spam controls, and a 30-day submissions retention window. Review its privacy terms before production. Do not put private API keys in public HTML.
 
-## Redirect scope
+## Media accuracy\n\nThe repository image `assets/porsche-3.png` is a black Porsche Cayman S before/after image, not the Panamera. The homepage gallery now labels it accurately and links to a dedicated Cayman S project page. The original Panamera project copy has been restored from the existing page, but its original Panamera photos are not yet copied into this repository; the page therefore does not display the unrelated Cayman photo. Add verified Panamera photos before treating that project gallery as fully restored.\n\n## Redirect scope
 
 The root `_redirects` file covers the known FAQ, Mercedes slug, and former luxury-services slug variants. Exact image-attachment URLs and WordPress archive URLs still need to be checked against Search Console / backlink data before any more redirects are added. Do not wildcard redirect all tags or categories to the homepage.
