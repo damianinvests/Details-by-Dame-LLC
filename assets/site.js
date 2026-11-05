@@ -132,8 +132,8 @@
       if(status)status.textContent="Sending your quote request…";
       fetch("https://formsubmit.co/ajax/detailsbydame@gmail.com",{
         method:"POST",
-        headers:{Accept:"application/json"},
-        body:new FormData(form)
+        headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
       }).then(function(response){
         if(!response.ok)throw new Error("The form service returned an error.");
         return response.json();
