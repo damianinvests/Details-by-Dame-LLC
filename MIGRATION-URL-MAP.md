@@ -61,5 +61,5 @@ Do not redirect every tag/category archive to the homepage. If an archive has no
 - Implement and test the 301 redirect table above.
 - Validate all internal links and image paths.
 - Test mobile layout, scroll-scrub behavior, LCP, image loading, and accessibility.
-- Replace the email-app quote form with an account-owned form endpoint and test delivery before launch.\n- Remove the staging-only `X-Robots-Tag: noindex` header before the production domain is connected.
+- Activate the FormSubmit endpoint by confirming the first verification email, then test a real submission and notification delivery before launch.\n- Remove the staging-only `X-Robots-Tag: noindex` header before the production domain is connected.
 - Do not change production DNS, GoDaddy hosting, or email routing until explicit approval.
