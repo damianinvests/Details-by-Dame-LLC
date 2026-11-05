@@ -26,14 +26,16 @@
     var mobileQuery=window.matchMedia?window.matchMedia("(max-width:700px)"):null;
     var desktopSource=video.getAttribute("src")||"";
     var mobileSource=video.getAttribute("data-mobile-src");
-    var desktopPreload=video.getAttribute("preload")||"metadata";
+    var desktopPreload="metadata";
     function syncSource(){
       var useMobile=!!(mobileQuery&&mobileQuery.matches&&mobileSource);
       var nextSource=useMobile?mobileSource:desktopSource;
       video.preload=useMobile?"auto":desktopPreload;
-      if(nextSource&&video.getAttribute("src")!==nextSource){
-        state.seeking=false;
-        video.setAttribute("src",nextSource);
+      if(nextSource){
+        if(video.getAttribute("src")!==nextSource){
+          state.seeking=false;
+          video.setAttribute("src",nextSource);
+        }
         video.load();
       }
     }
