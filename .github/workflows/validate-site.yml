@@ -4,10 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches:
-      - main
-      - migration/seo-structure-nov-2026
-      - migration/complete-site-qa-nov-2026
+    branches: [main]
 
 permissions:
   contents: read
