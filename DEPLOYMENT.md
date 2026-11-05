@@ -22,7 +22,7 @@ The repository root is the asset directory because the site already uses root-le
 
 The Wrangler config and deployment command have not been run from this chat because Cloudflare account credentials are not available here. Do not assume a GitHub commit alone has updated the preview deployment.
 
-## Before connecting detailsbydame.com
+## Preview safety\n\nThe `_headers` file intentionally sends `X-Robots-Tag: noindex` while this Worker is deployed on the `workers.dev` preview. Keep the custom domain and DNS unchanged during acceptance testing.\n\n## Before connecting detailsbydame.com
 
 - Remove the staging-only `X-Robots-Tag: noindex` line from `_headers`. Keep the other security headers.
 - Verify the production hostname and HTTPS settings in Cloudflare.
@@ -38,3 +38,8 @@ The quote form is connected to FormSubmit's AJAX endpoint and sends submissions 
 ## Media accuracy\n\nThe repository image `assets/porsche-3.png` is a black Porsche Cayman S before/after image, not the Panamera. The homepage gallery now labels it accurately and links to a dedicated Cayman S project page. The original Panamera project copy has been restored from the existing page, but its original Panamera photos are not yet copied into this repository; the page therefore does not display the unrelated Cayman photo. Add verified Panamera photos before treating that project gallery as fully restored.\n\n## Redirect scope
 
 The root `_redirects` file covers the known FAQ, Mercedes slug, and former luxury-services slug variants. Exact image-attachment URLs and WordPress archive URLs still need to be checked against Search Console / backlink data before any more redirects are added. Do not wildcard redirect all tags or categories to the homepage.
+
+
+## Service-area pages
+
+The initial cluster includes Union Park, Winter Springs, Winter Park, Lake Nona, Waterford Lakes, Avalon Park, Oviedo, and Alafaya, linked from `/service-areas/`. Each page makes service availability subject to address confirmation; do not expand into additional city pages without confirming practical coverage and adding genuinely unique local information.
