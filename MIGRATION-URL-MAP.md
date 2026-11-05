@@ -34,7 +34,7 @@ This file is an internal migration checklist. It does not configure redirects by
 | /car-detailing-orlando/ | Restore: this URL has meaningful historical Search Console impressions |
 | /car-detailing-union-park-fl/ | Restore: this URL has meaningful historical Search Console impressions |
 
-## Redirects to configure after confirming the Cloudflare Worker/static-assets routing
+## Redirects configured in the repository's Cloudflare `_redirects` file
 
 | Old URL or variant | Intended destination | Notes |
 |---|---|---|
@@ -43,7 +43,7 @@ This file is an internal migration checklist. It does not configure redirects by
 | /luxury-detailing-services/ | /services/ | Relevant service-hub replacement; avoid carrying forward the old “luxury” positioning |
 | http://detailsbydame.com/* and www host variants | https://detailsbydame.com/* | Host-level canonicalization; retain paths where valid |
 
-Do not add redirect rules until the deployed Cloudflare Worker/static-assets configuration is confirmed. The current repository has no checked-in Wrangler config or Worker entrypoint, so the correct redirect mechanism cannot yet be verified.
+The repository now includes `wrangler.toml` for Cloudflare Workers Static Assets and a root `_redirects` file for the path redirects listed above. These rules are not confirmed live until the preview Worker is redeployed and each response is tested. Host-level `www` and HTTP-to-HTTPS redirects must be configured separately in Cloudflare because `_redirects` does not support domain-level redirects.
 
 ## Do not recreate as indexable content
 
@@ -61,5 +61,5 @@ Do not redirect every tag/category archive to the homepage. If an archive has no
 - Implement and test the 301 redirect table above.
 - Validate all internal links and image paths.
 - Test mobile layout, scroll-scrub behavior, LCP, image loading, and accessibility.
-- Connect the quote form to the selected form service before launch.
+- Replace the email-app quote form with an account-owned form endpoint and test delivery before launch.\n- Remove the staging-only `X-Robots-Tag: noindex` header before the production domain is connected.
 - Do not change production DNS, GoDaddy hosting, or email routing until explicit approval.
