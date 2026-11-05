@@ -1,0 +1,7 @@
+# Canonical legacy URL redirects. Keep only one destination per old URL.
+/faq /faqs/ 301
+/faq/ /faqs/ 301
+/mercedes-benz-paint-correction-ceramic-coating-oviedo /mercedes-e350-paint-correction-ceramic-coating-oviedo/ 301
+/mercedes-benz-paint-correction-ceramic-coating-oviedo/ /mercedes-e350-paint-correction-ceramic-coating-oviedo/ 301
+/luxury-detailing-services /services/ 301
+/luxury-detailing-services/ /services/ 301
