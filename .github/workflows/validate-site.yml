@@ -7,6 +7,7 @@ on:
     branches:
       - main
       - migration/seo-structure-nov-2026
+      - migration/complete-site-qa-nov-2026
 
 permissions:
   contents: read
