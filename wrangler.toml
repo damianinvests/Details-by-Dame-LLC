@@ -1,4 +1,6 @@
 name = "details-by-dame-llc"
+workers_dev = true
+# Intentionally no custom domain or route: this deployment is for workers.dev preview only.
 compatibility_date = "2026-11-05"
 
 # This repository is a plain static HTML site. Keep the repository root as the
