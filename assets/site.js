@@ -126,24 +126,29 @@
   forms.forEach(function(form){
     form.addEventListener("submit",function(event){
       event.preventDefault();
-      var data=new FormData(form);
-      var lines=[
-        "Quote request from Details by Dame website preview",
-        "",
-        "Name: "+(data.get("name")||""),
-        "Email: "+(data.get("email")||""),
-        "Phone: "+(data.get("phone")||""),
-        "Service: "+(data.get("service")||""),
-        "Vehicle: "+(data.get("vehicle")||""),
-        "",
-        "Vehicle condition / goals:",
-        (data.get("details")||"")
-      ];
-      var subject=encodeURIComponent("Vehicle detailing quote request");
-      var body=encodeURIComponent(lines.join("\n"));
       var status=form.querySelector(".form-status");
-      if(status)status.textContent="Opening your email app with the quote details…";
-      window.location.href="mailto:detailsbydame@gmail.com?subject="+subject+"&body="+body;
+      var submitButton=form.querySelector('button[type="submit"]');
+      if(submitButton)submitButton.disabled=true;
+      if(status)status.textContent="Sending your quote request…";
+      fetch("https://formsubmit.co/ajax/detailsbydame@gmail.com",{
+        method:"POST",
+        headers:{Accept:"application/json"},
+        body:new FormData(form)
+      }).then(function(response){
+        if(!response.ok)throw new Error("The form service returned an error.");
+        return response.json();
+      }).then(function(result){
+        if(result.success===true||result.success==="true"){
+          form.reset();
+          if(status)status.textContent="Thanks — your quote request was sent. Details by Dame will be in touch.";
+        }else{
+          throw new Error("The form service did not confirm the submission.");
+        }
+      }).catch(function(){
+        if(status)status.textContent="We couldn't send the form just now. Please call or text (321) 419-5434, or email detailsbydame@gmail.com.";
+      }).finally(function(){
+        if(submitButton)submitButton.disabled=false;
+      });
     });
   });
 
