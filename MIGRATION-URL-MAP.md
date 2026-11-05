@@ -7,7 +7,7 @@ This file is an internal migration checklist. It does not configure redirects by
 | Legacy URL | New-site decision |
 |---|---|
 | / | Preserve as homepage |
-| /about/ | Rebuilt at same URL |
+| /about/ | Rebuilt at same URL |\n| /privacy/ | New privacy notice for website quote-form submissions |
 | /services/ | Rebuilt as the service hub |
 | /paint-correction-orlando/ | Preserve existing service page |
 | /ceramic-coating-orlando/ | Preserve existing service page |
@@ -22,8 +22,8 @@ This file is an internal migration checklist. It does not configure redirects by
 | /exterior-car-detailing-orlando/ | Rebuilt at same URL |
 | /blog/ | Rebuilt as a guide index |
 | /mercedes-e350-paint-correction-ceramic-coating-oviedo/ | Rebuilt as a project story |
-| /porsche-panamera-paint-correction-waterford-lakes/ | Rebuilt as a project story |
-| /corvette-c8-r-edition-ceramic-coating-orlando/ | Rebuilt as a project story |
+| /porsche-panamera-paint-correction-waterford-lakes/ | Rebuilt as a project story; original photos not yet present in this repository, so no mismatched image is shown |
+| /corvette-c8-r-edition-ceramic-coating-orlando/ | Rebuilt as a project story |\n| /porsche-cayman-s-paint-correction-orlando/ | New verified project page for the black Porsche Cayman S before/after image already in the repository |
 | /tesla-model-x-paint-correction-in-orlando-fl/ | Rebuilt as a project story; do not attach an unverified image |
 | /best-mobile-detailing-in-orlando/ | Retain and rewrite as a useful buyer guide |
 | /paint-correction-and-ceramic-coating/ | Retain as an explanatory guide |
