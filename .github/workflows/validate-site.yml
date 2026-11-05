@@ -1,0 +1,25 @@
+name: Validate static site
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - main
+      - migration/seo-structure-nov-2026
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate sitemap, canonicals, and local assets
+        run: python scripts/validate_site.py
