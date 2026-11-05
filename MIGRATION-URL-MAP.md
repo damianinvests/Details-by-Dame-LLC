@@ -7,7 +7,15 @@ This file is an internal migration checklist. It does not configure redirects by
 | Legacy URL | New-site decision |
 |---|---|
 | / | Preserve as homepage |
-| /about/ | Rebuilt at same URL |\n| /privacy/ | New privacy notice for website quote-form submissions |
+| /about/ | Rebuilt at same URL |
+| /mobile-detailing-alafaya-fl/ | New Alafaya service-area page; coverage confirmed by address |
+| /mobile-detailing-oviedo-fl/ | New Oviedo service-area page; coverage confirmed by address |
+| /mobile-detailing-avalon-park-fl/ | New Avalon Park service-area page; coverage confirmed by address |
+| /mobile-detailing-waterford-lakes-fl/ | New Waterford Lakes service-area page; coverage confirmed by address |
+| /mobile-detailing-lake-nona-fl/ | New Lake Nona service-area page; coverage confirmed by address |
+| /mobile-detailing-winter-park-fl/ | New Winter Park service-area page; coverage confirmed by address |
+| /service-areas/ | New index of the initial East Orlando service-area cluster |
+| /privacy/ | New privacy notice for website quote-form submissions |
 | /services/ | Rebuilt as the service hub |
 | /paint-correction-orlando/ | Preserve existing service page |
 | /ceramic-coating-orlando/ | Preserve existing service page |
@@ -23,7 +31,8 @@ This file is an internal migration checklist. It does not configure redirects by
 | /blog/ | Rebuilt as a guide index |
 | /mercedes-e350-paint-correction-ceramic-coating-oviedo/ | Rebuilt as a project story |
 | /porsche-panamera-paint-correction-waterford-lakes/ | Rebuilt as a project story; original photos not yet present in this repository, so no mismatched image is shown |
-| /corvette-c8-r-edition-ceramic-coating-orlando/ | Rebuilt as a project story |\n| /porsche-cayman-s-paint-correction-orlando/ | New verified project page for the black Porsche Cayman S before/after image already in the repository |
+| /corvette-c8-r-edition-ceramic-coating-orlando/ | Rebuilt as a project story |
+| /porsche-cayman-s-paint-correction-orlando/ | New verified project page for the black Porsche Cayman S before/after image already in the repository |
 | /tesla-model-x-paint-correction-in-orlando-fl/ | Rebuilt as a project story; do not attach an unverified image |
 | /best-mobile-detailing-in-orlando/ | Retain and rewrite as a useful buyer guide |
 | /paint-correction-and-ceramic-coating/ | Retain as an explanatory guide |
@@ -61,5 +70,6 @@ Do not redirect every tag/category archive to the homepage. If an archive has no
 - Implement and test the 301 redirect table above.
 - Validate all internal links and image paths.
 - Test mobile layout, scroll-scrub behavior, LCP, image loading, and accessibility.
-- Activate the FormSubmit endpoint by confirming the first verification email, then test a real submission and notification delivery before launch.\n- Remove the staging-only `X-Robots-Tag: noindex` header before the production domain is connected.
+- Activate the FormSubmit endpoint by confirming the first verification email, then test a real submission and notification delivery before launch.
+- Remove the staging-only `X-Robots-Tag: noindex` header before the production domain is connected.
 - Do not change production DNS, GoDaddy hosting, or email routing until explicit approval.
