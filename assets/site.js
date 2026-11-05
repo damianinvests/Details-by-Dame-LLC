@@ -14,6 +14,14 @@
   stages.forEach(function(stage){
     var video=stage.querySelector("video[data-scroll-video]");
     if(!video)return;
+    if(reduced){
+      stage.classList.add("stage-static","stage-ready");
+      video.pause();
+      video.removeAttribute("src");
+      video.removeAttribute("data-mobile-src");
+      video.load();
+      return;
+    }
     var state={target:0,current:0,raf:0,seeking:false};
     var mobileQuery=window.matchMedia?window.matchMedia("(max-width:700px)"):null;
     var desktopSource=video.getAttribute("src")||"";
