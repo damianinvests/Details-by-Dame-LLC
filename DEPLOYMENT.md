@@ -33,7 +33,7 @@ The Wrangler config and deployment command have not been run from this chat beca
 
 ## Quote form
 
-The current quote form opens a prefilled email on the visitor's device. It is not a server-side form and cannot guarantee lead delivery. Before production, connect a form provider using an account-owned endpoint/API key, then test successful submission, notification delivery, spam protection, and mobile behavior. Do not put a private API key in public HTML.
+The quote form is connected to FormSubmit's AJAX endpoint and sends submissions to detailsbydame@gmail.com. FormSubmit requires the recipient to confirm the first activation email before forwarding submissions. After deploying the preview, submit one test request, open the activation email (check Spam/Promotions), confirm the form, and submit a second test to verify delivery. The provider documents cross-origin AJAX support, spam controls, and a 30-day submissions retention window. Review its privacy terms before production. Do not put private API keys in public HTML.
 
 ## Redirect scope
 
