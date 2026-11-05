@@ -263,3 +263,8 @@ a:hover .arrow{transform:translateX(4px)}
 .service-image picture,.project picture{position:absolute;inset:0;display:block}
 .split-proof picture{display:block;width:100%}
 
+
+.form-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.quote-form button:disabled{opacity:.65;cursor:wait}
+
+.stage-static .stage-video{opacity:1}

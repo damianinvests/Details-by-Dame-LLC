@@ -1,0 +1,8 @@
+name = "details-by-dame-llc"
+compatibility_date = "2026-11-05"
+
+# This repository is a plain static HTML site. Keep the repository root as the
+# asset directory so existing /route/index.html paths and /assets/* paths stay intact.
+[assets]
+directory = "."
+not_found_handling = "404-page"
