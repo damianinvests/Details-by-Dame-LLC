@@ -4,12 +4,17 @@ This file is an internal migration checklist. It does not configure redirects by
 
 ## Preserve and rebuild
 
-| /service-areas/ | New index of the initial East Orlando service-area cluster |
-
 | Legacy URL | New-site decision |
 |---|---|
 | / | Preserve as homepage |
 | /about/ | Rebuilt at same URL |
+| /mobile-detailing-alafaya-fl/ | New Alafaya service-area page; coverage confirmed by address |
+| /mobile-detailing-oviedo-fl/ | New Oviedo service-area page; coverage confirmed by address |
+| /mobile-detailing-avalon-park-fl/ | New Avalon Park service-area page; coverage confirmed by address |
+| /mobile-detailing-waterford-lakes-fl/ | New Waterford Lakes service-area page; coverage confirmed by address |
+| /mobile-detailing-lake-nona-fl/ | New Lake Nona service-area page; coverage confirmed by address |
+| /mobile-detailing-winter-park-fl/ | New Winter Park service-area page; coverage confirmed by address |
+| /service-areas/ | New index of the initial East Orlando service-area cluster |
 | /privacy/ | New privacy notice for website quote-form submissions |
 | /services/ | Rebuilt as the service hub |
 | /paint-correction-orlando/ | Preserve existing service page |
