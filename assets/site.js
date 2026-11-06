@@ -93,7 +93,14 @@
     });
     video.addEventListener("seeked",function(){
       state.seeking=false;
-      if(!reduced&&!document.hidden&&visible()&&Math.abs(state.current-state.target)>0.001&&!state.raf)state.raf=requestAnimationFrame(render);
+      if(reduced||document.hidden||!visible())return;
+      var end=requestedEnd>0?Math.min(requestedEnd,video.duration||requestedEnd):(video.duration||0);
+      var desired=start+Math.max(0,end-start)*state.target;
+      // A scroll update may arrive while the previous seek is decoding. Always
+      // compare the decoded frame with the latest target, not only RAF progress.
+      if(Math.abs(video.currentTime-desired)>0.04||Math.abs(state.current-state.target)>0.001){
+        if(!state.raf)state.raf=requestAnimationFrame(render);
+      }
     });
     video.addEventListener("error",function(){
       stage.classList.add("stage-video-error");
