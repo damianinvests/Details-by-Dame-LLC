@@ -26,7 +26,7 @@
     var mobileQuery=window.matchMedia?window.matchMedia("(max-width:700px)"):null;
     var desktopSource=video.getAttribute("src")||"";
     var mobileSource=video.getAttribute("data-mobile-src");
-    var desktopPreload="metadata";
+    var desktopPreload="auto";
     function syncSource(){
       var useMobile=!!(mobileQuery&&mobileQuery.matches&&mobileSource);
       var nextSource=useMobile?mobileSource:desktopSource;
@@ -63,7 +63,7 @@
         var end=requestedEnd>0?Math.min(requestedEnd,video.duration||requestedEnd):(video.duration||0);
         var time=start+Math.max(0,end-start)*state.current;
         if(!video.paused)video.pause();
-        if(!state.seeking&&video.readyState>=2&&Math.abs(video.currentTime-time)>0.045){
+        if(!state.seeking&&video.readyState>=2&&Math.abs(video.currentTime-time)>0.04){
           state.seeking=true;
           try{video.currentTime=time;}catch(e){state.seeking=false;}
         }
@@ -79,10 +79,12 @@
     }
     video.addEventListener("loadedmetadata",function(){
       video.pause();
-      if(window.scrollY<=0&&Math.abs(video.currentTime-start)>0.045){
-        state.seeking=true;
-        try{video.currentTime=start;}catch(e){state.seeking=false;}
-      }
+      state.target=getProgress();
+      state.current=state.target;
+      var duration=video.duration||requestedEnd||start;
+      var end=requestedEnd>0?Math.min(requestedEnd,duration):duration;
+      var initial=start+Math.max(0,end-start)*state.target;
+      try{video.currentTime=initial;}catch(e){}
       update();
     });
     video.addEventListener("loadeddata",function(){
@@ -91,7 +93,11 @@
     });
     video.addEventListener("seeked",function(){
       state.seeking=false;
-      if(!reduced&&!document.hidden&&visible()&&!state.raf)state.raf=requestAnimationFrame(render);
+      if(!reduced&&!document.hidden&&visible()&&Math.abs(state.current-state.target)>0.001&&!state.raf)state.raf=requestAnimationFrame(render);
+    });
+    video.addEventListener("error",function(){
+      stage.classList.add("stage-video-error");
+      stage.classList.remove("stage-ready");
     });
     video.addEventListener("play",function(){video.pause();});
     if(mobileQuery){
