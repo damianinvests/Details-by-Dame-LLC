@@ -47,7 +47,7 @@
       return !route||!route.hidden;
     }
     function getProgress(){
-      if(stage.getAttribute("data-scroll-scope")==="page"){
+      if(stage.classList.contains("home-film")){
         var pageRange=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
         return clamp(window.scrollY/pageRange);
       }
