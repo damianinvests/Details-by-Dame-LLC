@@ -73,6 +73,7 @@ def fail(message):
 
 def main():
     urls = []
+    sitemap_paths = set()
     sitemap = ROOT / "sitemap.xml"
     if not sitemap.is_file():
         fail("sitemap.xml is missing")
@@ -81,8 +82,7 @@ def main():
         urls = [node.text.strip() for node in tree.findall(".//{*}loc") if node.text]
         if not urls:
             fail("sitemap.xml contains no URLs")
-        sitemap_paths = set()
-        for url in urls:
+            for url in urls:
             parsed = urlparse(url)
             sitemap_paths.add(parsed.path)
             if parsed.hostname != "detailsbydame.com" or parsed.scheme != "https":
@@ -166,7 +166,7 @@ def main():
             source, destination, status = parts[:3]
             if status != "301":
                 fail(f"Legacy path redirect should use 301: {line}")
-            if source in sitemap_paths if sitemap.is_file() else False:
+            if source in sitemap_paths:
                 fail(f"Redirect source must not also be in sitemap.xml: {source}")
             if destination.startswith("/"):
                 target = ROOT / destination.lstrip("/")
