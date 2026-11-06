@@ -22,22 +22,26 @@
       video.load();
       return;
     }
-    var state={target:0,current:0,raf:0,seeking:false};
+    var state={target:0,current:0,raf:0,seeking:false,activated:false};
     var mobileQuery=window.matchMedia?window.matchMedia("(max-width:700px)"):null;
     var desktopSource=video.getAttribute("src")||"";
     var mobileSource=video.getAttribute("data-mobile-src");
-    var desktopPreload="auto";
     function syncSource(){
+      if(!state.activated)return;
       var useMobile=!!(mobileQuery&&mobileQuery.matches&&mobileSource);
       var nextSource=useMobile?mobileSource:desktopSource;
-      video.preload=useMobile?"auto":desktopPreload;
-      if(nextSource){
-        if(video.getAttribute("src")!==nextSource){
-          state.seeking=false;
-          video.setAttribute("src",nextSource);
-        }
+      video.preload="auto";
+      if(nextSource&&video.getAttribute("src")!==nextSource){
+        state.seeking=false;
+        video.setAttribute("src",nextSource);
         video.load();
       }
+    }
+    function activateVideo(){
+      if(state.activated)return;
+      state.activated=true;
+      syncSource();
+      video.pause();
     }
     var start=parseFloat(video.getAttribute("data-start")||"0");
     var requestedEnd=parseFloat(video.getAttribute("data-end")||"0");
@@ -112,9 +116,26 @@
       if(mobileQuery.addEventListener)mobileQuery.addEventListener("change",mediaChange);
       else if(mobileQuery.addListener)mobileQuery.addListener(mediaChange);
     }
-    syncSource();
+    // Do not fetch video bytes until the stage is near the viewport.
+    // Mobile devices select their much smaller dedicated source before loading.
     video.pause();
-    update();
+    video.preload="none";
+    video.removeAttribute("src");
+    video.load();
+    if("IntersectionObserver"in window){
+      var videoObserver=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            activateVideo();
+            videoObserver.disconnect();
+            update();
+          }
+        });
+      },{rootMargin:"500px 0px"});
+      videoObserver.observe(stage);
+    }else{
+      activateVideo();
+    }
     stage._scrubUpdate=update;
   });
 
