@@ -176,20 +176,20 @@
       var submitButton=form.querySelector('button[type="submit"]');
       if(submitButton)submitButton.disabled=true;
       if(status)status.textContent="Sending your quote request…";
-      fetch("https://formsubmit.co/ajax/detailsbydame@gmail.com",{
+      fetch(form.getAttribute("action")||"https://api.web3forms.com/submit",{
         method:"POST",
-        headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+        headers:{"Accept":"application/json"},
+        body:new FormData(form)
       }).then(function(response){
-        if(!response.ok)throw new Error("The form service returned an error.");
-        return response.json();
-      }).then(function(result){
-        if(result.success===true||result.success==="true"){
-          form.reset();
-          if(status)status.textContent="Thanks — your quote request was sent. Details by Dame will be in touch.";
-        }else{
-          throw new Error("The form service did not confirm the submission.");
-        }
+        return response.json().then(function(result){
+          if(!response.ok||result.success!==true){
+            throw new Error(result.message||(result.body&&result.body.message)||"The form service did not confirm the submission.");
+          }
+          return result;
+        });
+      }).then(function(){
+        form.reset();
+        if(status)status.textContent="Thanks — your quote request was sent. Details by Dame will be in touch.";
       }).catch(function(){
         if(status)status.textContent="We couldn't send the form just now. Please call or text (321) 419-5434, or email detailsbydame@gmail.com.";
       }).finally(function(){
