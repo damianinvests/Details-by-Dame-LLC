@@ -23,8 +23,8 @@ export default {
       response = new HTMLRewriter()
         .on("head", {
           element(element) {
-            element.append('<link rel="icon" type="image/png" href="/assets/details-logo.png">', { html: true });
-            element.append('<link rel="apple-touch-icon" href="/assets/details-logo.png">', { html: true });
+            element.append('<link rel="icon" type="image/jpeg" href="/assets/details-favicon.jpg">', { html: true });
+            element.append('<link rel="apple-touch-icon" href="/assets/details-favicon.jpg">', { html: true });
             element.append(GTM_HEAD_SNIPPET, { html: true });
           }
         })
