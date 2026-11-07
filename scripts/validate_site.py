@@ -98,7 +98,7 @@ def main():
                 fail(f"Sitemap URL has no matching file: {url}")
                 continue
             content = page_path.read_text(encoding="utf-8")
-            schema_blocks = re.findall(r'<script\\s+type=["\\']application/ld\\+json["\\']\\s*>(.*?)</script>', content, re.IGNORECASE | re.DOTALL)
+            schema_blocks = re.findall(r'<script\s+type=["\']application/ld\+json["\']\s*>(.*?)</script>', content, re.IGNORECASE | re.DOTALL)
             schema_objects = []
             for block in schema_blocks:
                 try:
