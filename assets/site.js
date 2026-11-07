@@ -5,6 +5,7 @@
     menuButton.addEventListener("click",function(){
       var open=nav.classList.toggle("is-open");
       menuButton.setAttribute("aria-expanded",open?"true":"false");
+      menuButton.setAttribute("aria-label",open?"Close menu":"Open menu");
       menuButton.textContent=open?"×":"☰";
     });
   }
@@ -240,7 +241,7 @@
       window.location.hash=route;
       showRoute(route,anchor);
       if(nav)nav.classList.remove("is-open");
-      if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.textContent="☰";}
+      if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");menuButton.textContent="☰";}
     });
     window.addEventListener("hashchange",function(){showRoute(currentRoute());});
     showRoute(currentRoute());
