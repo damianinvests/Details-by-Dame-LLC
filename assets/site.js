@@ -156,6 +156,7 @@
 
   var revealNodes=[].slice.call(document.querySelectorAll(".reveal"));
   if("IntersectionObserver"in window&&!reduced){
+    document.documentElement.classList.add("js");
     var observer=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target);}
