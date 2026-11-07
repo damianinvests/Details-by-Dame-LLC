@@ -178,8 +178,8 @@
       if(status)status.textContent="Sending your quote request…";
       fetch(form.getAttribute("action")||"https://api.web3forms.com/submit",{
         method:"POST",
-        headers:{"Accept":"application/json"},
-        body:new FormData(form)
+        headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
       }).then(function(response){
         return response.json().then(function(result){
           if(!response.ok||result.success!==true){
@@ -190,8 +190,8 @@
       }).then(function(){
         form.reset();
         if(status)status.textContent="Thanks — your quote request was sent. Details by Dame will be in touch.";
-      }).catch(function(){
-        if(status)status.textContent="We couldn't send the form just now. Please call or text (321) 419-5434, or email detailsbydame@gmail.com.";
+      }).catch(function(error){
+        if(status)status.textContent="We couldn't send the form: "+(error&&error.message?error.message:"Please try again, or call/text (321) 419-5434 or email info@detailsbydame.com.");
       }).finally(function(){
         if(submitButton)submitButton.disabled=false;
       });
