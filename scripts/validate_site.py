@@ -2,6 +2,8 @@
 """Validate the static site structure, SEO basics, media markup, and redirects."""
 from html.parser import HTMLParser
 from pathlib import Path
+import json
+import re
 from urllib.parse import urlparse
 import sys
 import xml.etree.ElementTree as ET
@@ -96,6 +98,25 @@ def main():
                 fail(f"Sitemap URL has no matching file: {url}")
                 continue
             content = page_path.read_text(encoding="utf-8")
+            schema_blocks = re.findall(r'<script\\s+type=["\\']application/ld\\+json["\\']\\s*>(.*?)</script>', content, re.IGNORECASE | re.DOTALL)
+            schema_objects = []
+            for block in schema_blocks:
+                try:
+                    schema_objects.append(json.loads(block))
+                except json.JSONDecodeError as exc:
+                    fail(f"{page_path.relative_to(ROOT)} has invalid JSON-LD: {exc}")
+            schema_types = {obj.get("@type") for obj in schema_objects if isinstance(obj, dict)}
+            if page_path == ROOT / "index.html" and "AutomotiveBusiness" not in schema_types:
+                fail("Homepage must include AutomotiveBusiness structured data")
+            if page_path.parent.name in {"paint-correction-orlando", "ceramic-coating-orlando", "mobile-detailing-orlando"}:
+                if "Service" not in schema_types or "BreadcrumbList" not in schema_types:
+                    fail(f"{page_path.relative_to(ROOT)} must include Service and BreadcrumbList structured data")
+                for obj in schema_objects:
+                    if isinstance(obj, dict) and obj.get("@type") == "Service":
+                        if obj.get("provider", {}).get("@id") != "https://detailsbydame.com/#business":
+                            fail(f"{page_path.relative_to(ROOT)} Service schema must reference the canonical business entity")
+                        if not obj.get("description") or not obj.get("url"):
+                            fail(f"{page_path.relative_to(ROOT)} Service schema needs a description and canonical URL")
             parser = References()
             parser.feed(content)
             if parser.h1_count != 1:
