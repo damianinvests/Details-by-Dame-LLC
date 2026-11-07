@@ -193,7 +193,8 @@ a:hover .arrow{transform:translateX(4px)}
 .review-strip strong{color:var(--gold-bright);font-size:24px;font-weight:500}
 .review-strip span{color:var(--muted);font-size:11px}
 .review-strip a{color:var(--gold-bright);font-size:11px}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.js .reveal{opacity:0;transform:translateY(24px)}
 .reveal.in-view{opacity:1;transform:translateY(0)}
 @media(max-width:900px){
  .site-nav{gap:14px;font-size:11px}
