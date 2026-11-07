@@ -21,8 +21,26 @@ export default {
     // do not also hard-code a separate gtag.js installation here.
     if (response.status < 400 && contentType.includes("text/html")) {
       response = new HTMLRewriter()
+        // Keep the public contact email consistent across every HTML page,
+        // including visible copy and JSON-LD text.
+        .on("*", {
+          text(text) {
+            text.replace("detailsbydame@gmail.com", "info@detailsbydame.com");
+          }
+        })
+        // Update clickable email links as well as their visible text.
+        .on("a[href]", {
+          element(element) {
+            const href = element.getAttribute("href");
+            if (href && href.includes("detailsbydame@gmail.com")) {
+              element.setAttribute("href", href.replaceAll("detailsbydame@gmail.com", "info@detailsbydame.com"));
+            }
+          }
+        })
         .on("head", {
           element(element) {
+            element.append('<link rel="icon" type="image/png" href="/assets/details-logo.png">', { html: true });
+            element.append('<link rel="apple-touch-icon" href="/assets/details-logo.png">', { html: true });
             element.append(GTM_HEAD_SNIPPET, { html: true });
           }
         })
