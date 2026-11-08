@@ -25,6 +25,7 @@ export default {
           element(element) {
             element.append('<link rel="icon" type="image/jpeg" href="/assets/details-favicon.jpg">', { html: true });
             element.append('<link rel="apple-touch-icon" href="/assets/details-favicon.jpg">', { html: true });
+            element.append("<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"AutomotiveBusiness\",\"@id\":\"https://detailsbydame.com/#business\",\"name\":\"Details by Dame, LLC\",\"url\":\"https://detailsbydame.com/\",\"telephone\":\"+1-321-419-5434\",\"email\":\"info@detailsbydame.com\",\"logo\":\"https://detailsbydame.com/assets/details-logo.png\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Union Park\",\"addressRegion\":\"FL\",\"addressCountry\":\"US\"},\"areaServed\":[\"Orlando, FL\",\"Union Park, FL\",\"Waterford Lakes, FL\",\"Avalon Park, FL\",\"Winter Springs, FL\",\"Oviedo, FL\",\"Winter Park, FL\",\"Lake Nona, FL\",\"Alafaya, FL\"]}</script>", { html: true });
             element.append(GTM_HEAD_SNIPPET, { html: true });
           }
         })

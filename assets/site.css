@@ -292,3 +292,31 @@ a:hover .arrow{transform:translateX(4px)}
 .mobile-service-requirements{margin-top:24px;padding:18px 20px;border-left:2px solid var(--gold);background:rgba(255,255,255,.035);color:rgba(242,240,233,.82);font-size:14px;line-height:1.7}
 .stage-video-error .stage-shade{background:linear-gradient(90deg,rgba(3,8,5,.82),rgba(3,8,5,.56))}
 @media(max-width:700px){.nav-drop .nav-sub{padding-left:30px}}
+
+
+/* Mobile spacing fixes: keep the scroll cue below hero copy and project labels above titles. */
+@media(max-width:700px){
+  .home-hero .hero-content{padding-bottom:28px}
+  .home-hero .scroll-cue{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    width:max-content;
+    max-width:calc(100% - 46px);
+    margin:0 23px 24px;
+    white-space:normal;
+    line-height:1.6;
+  }
+  .home-hero .scroll-cue span{flex:0 0 25px}
+  .guide-link{
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:auto auto;
+    align-items:start;
+    gap:7px 12px;
+    padding:18px 0;
+  }
+  .guide-link .guide-no{grid-column:1;grid-row:1}
+  .guide-link h3{grid-column:1;grid-row:2;line-height:1.3}
+  .guide-link .guide-arrow{grid-column:2;grid-row:1 / span 2;align-self:center}
+}
