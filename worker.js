@@ -33,12 +33,14 @@ export default {
 
       response = new HTMLRewriter()
         .on("title", {
-          element(element) {
-            titleText = "";
-            element.onEndTag(() => element.setInnerContent(normalizeBrandTitle(titleText)));
-          },
           text(text) {
             titleText += text.text;
+            if (text.lastInTextNode) {
+              text.replace(normalizeBrandTitle(titleText));
+              titleText = "";
+            } else {
+              text.remove();
+            }
           }
         })
         .on('meta[property="og:title"]', {
