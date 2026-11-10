@@ -326,7 +326,7 @@ a:hover .arrow{transform:translateX(4px)}
 @media (max-width:700px){
   .site-header{
     display:grid;
-    grid-template-columns:38px minmax(0,1fr) auto;
+    grid-template-columns:minmax(38px,1fr) auto minmax(38px,1fr);
     align-items:center;
     column-gap:8px;
     row-gap:0;
