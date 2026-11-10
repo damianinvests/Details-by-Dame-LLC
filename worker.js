@@ -41,7 +41,9 @@ export default {
               "address": { "@type": "PostalAddress", "addressLocality": "Union Park", "addressRegion": "FL", "addressCountry": "US" },
               "areaServed": ["Orlando, FL", "Union Park, FL", "Waterford Lakes, FL", "Avalon Park, FL", "Winter Springs, FL", "Oviedo, FL", "Winter Park, FL", "Lake Nona, FL", "Alafaya, FL"]
             };
-            element.append('<script type="application/ld+json">' + JSON.stringify(businessSchema) + '</script>', { html: true });
+            if (url.pathname !== "/") {
+              element.append('<script type="application/ld+json">' + JSON.stringify(businessSchema) + '</script>', { html: true });
+            }
             const pagePath = url.pathname.replace(/\/+$/, "") || "/";
             if (pagePath !== "/") {
               const labels = {
@@ -66,7 +68,9 @@ export default {
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://detailsbydame.com/" },
                 { "@type": "ListItem", "position": 2, "name": label, "item": "https://detailsbydame.com" + pagePath + "/" }
               ] };
-              element.append('<script type="application/ld+json">' + JSON.stringify(breadcrumb) + '</script>', { html: true });
+              if (!["/paint-correction-orlando", "/ceramic-coating-orlando", "/mobile-detailing-orlando"].includes(pagePath)) {
+                element.append('<script type="application/ld+json">' + JSON.stringify(breadcrumb) + '</script>', { html: true });
+              }
             }
             element.append(GTM_HEAD_SNIPPET, { html: true });
           }
