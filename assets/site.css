@@ -381,3 +381,61 @@ a:hover .arrow{transform:translateX(4px)}
     grid-row:2;
   }
 }
+
+/* Service-page mobile hero: keep the heading and opening content below the fixed header. */
+@media (max-width:700px){
+  .service-hero .hero-content{
+    align-content:start;
+    align-items:start;
+    padding:calc(74px + 18px) 23px 112px;
+    gap:14px;
+  }
+  .service-hero .hero-copy{
+    width:100%;
+    max-width:none;
+    min-width:0;
+  }
+  .service-hero .hero-copy .eyebrow{
+    font-size:9px;
+    line-height:1.5;
+  }
+  .service-hero .hero-copy h1{
+    margin:12px 0 14px;
+    font-size:clamp(38px,10vw,56px);
+    line-height:1.02;
+    overflow-wrap:anywhere;
+  }
+  .service-hero .hero-copy p{
+    max-width:100%;
+    margin:0;
+    font-size:13px;
+    line-height:1.48;
+  }
+  .service-hero .hero-actions{
+    gap:8px;
+    margin-top:16px;
+  }
+  .service-hero .hero-actions .button{
+    padding:10px 12px;
+    font-size:9px;
+    line-height:1.35;
+  }
+  .service-hero .service-hierarchy{
+    gap:6px;
+    margin-top:14px;
+    font-size:8px;
+    line-height:1.5;
+  }
+  .service-hero .trust-line{
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:10px;
+    font-size:9px;
+    line-height:1.5;
+  }
+  .service-hero .hero-aside,
+  .service-hero .hero-index,
+  .service-hero .scroll-cue{
+    display:none;
+  }
+}
