@@ -74,6 +74,14 @@ export default {
             };
             if (url.pathname !== "/") {
               element.append('<script type="application/ld+json">' + JSON.stringify(businessSchema) + '</script>', { html: true });
+            } else {
+              const websiteSchema = {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Details by Dame, LLC",
+                "url": "https://detailsbydame.com/"
+              };
+              element.append('<script type="application/ld+json">' + JSON.stringify(websiteSchema) + '</script>', { html: true });
             }
             const pagePath = url.pathname.replace(/\/+$/, "") || "/";
             if (pagePath !== "/") {
