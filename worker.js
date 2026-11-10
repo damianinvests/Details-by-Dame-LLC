@@ -21,11 +21,42 @@ export default {
     // wildcard text-replacement handler was recently introduced and is the
     // only new Worker transformation associated with the blank-page report.
     if (response.status < 400 && contentType.includes("text/html")) {
+      let titleText = "";
+      const normalizeBrandTitle = (value) => {
+        let title = (value || "").trim();
+        if (/Details by Dame, LLC/i.test(title)) return title;
+        if (/Details by Dame/i.test(title)) {
+          return title.replace(/Details by Dame(?!, LLC)/gi, "Details by Dame, LLC");
+        }
+        return title ? title + " | Details by Dame, LLC" : "Details by Dame, LLC";
+      };
+
       response = new HTMLRewriter()
+        .on("title", {
+          element(element) {
+            titleText = "";
+            element.onEndTag(() => element.setInnerContent(normalizeBrandTitle(titleText)));
+          },
+          text(text) {
+            titleText += text.text;
+          }
+        })
+        .on('meta[property="og:title"]', {
+          element(element) {
+            element.setAttribute("content", normalizeBrandTitle(element.getAttribute("content")));
+          }
+        })
+        .on('meta[name="twitter:title"]', {
+          element(element) {
+            element.setAttribute("content", normalizeBrandTitle(element.getAttribute("content")));
+          }
+        })
         .on("head", {
           element(element) {
             element.append('<link rel="icon" type="image/jpeg" href="/assets/details-favicon.jpg">', { html: true });
             element.append('<link rel="apple-touch-icon" href="/assets/details-favicon.jpg">', { html: true });
+            element.append('<meta property="og:site_name" content="Details by Dame, LLC">', { html: true });
+            element.append('<meta name="application-name" content="Details by Dame, LLC">', { html: true });
             const businessSchema = {
               "@context": "https://schema.org",
               "@type": "AutomotiveBusiness",
