@@ -439,3 +439,21 @@ a:hover .arrow{transform:translateX(4px)}
     display:none;
   }
 }
+
+
+/* Accessibility: keep the service hierarchy readable over moving hero video. */
+.service-hero .service-hierarchy{
+  width:fit-content;
+  max-width:100%;
+  padding:10px 12px;
+  border:1px solid rgba(239,212,155,.48);
+  border-radius:4px;
+  background:rgba(3,8,5,.96);
+  color:#f2f0e9;
+}
+.service-hero .service-hierarchy span{
+  color:#f2f0e9;
+}
+.service-hero .service-hierarchy strong{
+  color:#efd49b;
+}
