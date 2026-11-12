@@ -457,3 +457,28 @@ a:hover .arrow{transform:translateX(4px)}
 .service-hero .service-hierarchy strong{
   color:#efd49b;
 }
+
+/* Service hero layout: let the content define the panel height instead of
+   clipping long headings, copy, CTAs, and trust details inside one viewport. */
+.service-hero .stage-pin{
+  height:auto;
+  min-height:100svh;
+}
+.service-hero .hero-content{
+  position:relative;
+  inset:auto;
+  min-height:100svh;
+  box-sizing:border-box;
+  align-items:center;
+}
+@media(max-width:700px){
+  .service-hero .hero-content{
+    position:relative;
+    inset:auto;
+    min-height:100svh;
+    padding:calc(74px + 18px) 23px 82px;
+    align-content:start;
+    align-items:start;
+  }
+}
+
