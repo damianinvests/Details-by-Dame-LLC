@@ -528,3 +528,7 @@ a:hover .arrow{transform:translateX(4px)}
 
 /* Keep linked footer headings visually identical to their neighboring section headings. */
 .footer-heading a,.footer-heading-link{color:inherit!important;font:inherit;letter-spacing:inherit;text-transform:inherit;}
+
+/* Make the Services menu label navigate to the services overview while retaining its dropdown. */
+.nav-services-page{color:inherit;text-decoration:none;font:inherit;}
+.nav-services-page:hover{color:var(--gold-bright);}
