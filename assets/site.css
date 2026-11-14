@@ -525,3 +525,6 @@ a:hover .arrow{transform:translateX(4px)}
 
 
 .footer-privacy{display:inline-block;margin-top:10px;color:var(--muted);font-size:10px;text-decoration:underline;text-decoration-color:rgba(182,185,178,.45);text-underline-offset:3px}
+
+/* Keep linked footer headings visually identical to their neighboring section headings. */
+.footer-heading a,.footer-heading-link{color:inherit!important;font:inherit;letter-spacing:inherit;text-transform:inherit;}
