@@ -168,6 +168,32 @@
     revealNodes.forEach(function(node){node.classList.add("in-view");});
   }
 
+  // Load Web3Forms hCaptcha only when a quote form is close to view or used.
+  var captchaForms=[].slice.call(document.querySelectorAll(".quote-form"));
+  var captchaScriptLoaded=false;
+  function loadCaptchaClient(){
+    if(captchaScriptLoaded||!captchaForms.length)return;
+    captchaScriptLoaded=true;
+    var captchaScript=document.createElement("script");
+    captchaScript.src="https://web3forms.com/client/script.js";
+    captchaScript.async=true;
+    document.body.appendChild(captchaScript);
+  }
+  if(captchaForms.length){
+    if("IntersectionObserver"in window){
+      var captchaObserver=new IntersectionObserver(function(entries){
+        if(entries.some(function(entry){return entry.isIntersecting;})){
+          loadCaptchaClient();
+          captchaObserver.disconnect();
+        }
+      },{rootMargin:"400px 0px"});
+      captchaForms.forEach(function(form){captchaObserver.observe(form);});
+    }else{
+      loadCaptchaClient();
+    }
+    captchaForms.forEach(function(form){form.addEventListener("focusin",loadCaptchaClient,{once:true});});
+  }
+
   var forms=[].slice.call(document.querySelectorAll(".quote-form"));
   forms.forEach(function(form){
     form.addEventListener("submit",function(event){
