@@ -155,6 +155,7 @@ a:hover .arrow{transform:translateX(4px)}
 .form-note{grid-column:1/-1;margin:0;color:rgba(242,240,233,.52);font-size:10px}
 .form-status{grid-column:1/-1;min-height:20px;color:var(--gold-bright);font-size:12px}
 .site-footer{position:relative;z-index:1;padding:54px 0 48px;border-top:1px solid var(--line);background:rgba(5,11,8,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.footer-legal{width:min(var(--max),calc(100% - 36px));margin:28px auto 0;padding:16px 0 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.6;text-align:center}
 .footer-row{display:grid;grid-template-columns:1.35fr .8fr 1fr .8fr;gap:clamp(24px,4vw,56px);align-items:start}
 .footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0}
 .footer-brand{display:flex;align-items:center;gap:15px;color:var(--gold-bright);font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.7;text-transform:uppercase}.footer-brand span{color:inherit!important}.footer-logo{width:58px;height:58px;flex:0 0 58px;object-fit:contain;display:block}

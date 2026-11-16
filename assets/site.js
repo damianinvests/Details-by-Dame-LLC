@@ -272,4 +272,13 @@
     window.addEventListener("hashchange",function(){showRoute(currentRoute());});
     showRoute(currentRoute());
   }
+  // Add the legal brand notice to every page's shared footer.
+  document.querySelectorAll(".site-footer").forEach(function(footer){
+    if(footer.querySelector(".footer-legal"))return;
+    var legal=document.createElement("p");
+    legal.className="footer-legal";
+    legal.textContent="© 2026 Details by Dame, LLC. All rights reserved. Details by Dame™.";
+    var footerRow=footer.querySelector(".footer-row");
+    if(footerRow)footerRow.insertAdjacentElement("afterend",legal);
+  });
 })();
