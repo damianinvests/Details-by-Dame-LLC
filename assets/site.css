@@ -535,6 +535,65 @@ a:hover .arrow{transform:translateX(4px)}
 .nav-services-page:hover{color:var(--gold-bright);}
 
 
+/* Blog conversion path: make the next relevant service easy to identify. */
+.article-service-path{
+  margin:52px 0 12px;
+  padding:28px;
+  border:1px solid rgba(210,174,112,.32);
+  background:linear-gradient(135deg,rgba(19,32,25,.88),rgba(13,23,18,.68));
+}
+.article-service-path>h2{
+  margin:0 0 10px!important;
+  font-size:clamp(25px,3vw,34px)!important;
+  line-height:1.15!important;
+}
+.article-service-path>p{
+  margin:0 0 20px!important;
+}
+.article-service-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.article-service-link{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  min-width:0;
+  padding:16px;
+  border:1px solid rgba(242,240,233,.16);
+  background:rgba(4,11,7,.42);
+  color:var(--cream)!important;
+  text-decoration:none!important;
+  transition:border-color .2s ease,background .2s ease;
+}
+.article-service-link:hover{
+  border-color:var(--gold);
+  background:rgba(210,174,112,.08);
+}
+.article-service-link strong{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--gold-bright);
+  font-size:15px;
+  line-height:1.35;
+}
+.article-service-link>span{
+  color:rgba(242,240,233,.72);
+  font-size:13px;
+  line-height:1.55;
+}
+.article-service-contact{
+  margin:18px 0 0!important;
+  font-size:13px;
+}
+@media(max-width:700px){
+  .article-service-path{margin:38px 0 8px;padding:19px 16px}
+  .article-service-grid{grid-template-columns:1fr;gap:8px}
+  .article-service-link{padding:14px}
+}
+
 /* Florida rust-prevention guide: make the five wash actions read as a practical process. */
 .article-body{
   max-width:860px;
